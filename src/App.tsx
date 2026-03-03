@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const APK_DOWNLOAD_URL =
   import.meta.env.VITE_LAKBAY_APK_URL ||
-  'https://expo.dev/artifacts/eas/gjPsdgu8FQ19Jwruv214aN.apk';
+  'https://expo.dev/artifacts/eas/rgFUPpVmcSzE8Ndhqsfo2W.apk';
 
 type Page = 'home' | 'about' | 'contact' | 'download';
 
