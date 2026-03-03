@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 
-const APK_DOWNLOAD_URL =
-  import.meta.env.VITE_LAKBAY_APK_URL ||
-  'https://expo.dev/artifacts/eas/rgFUPpVmcSzE8Ndhqsfo2W.apk';
+// IMPORTANT:
+// We intentionally do NOT keep a hardcoded fallback here.
+// This prevents the public site from accidentally serving an old APK link.
+const APK_DOWNLOAD_URL = import.meta.env.VITE_LAKBAY_APK_URL as string | undefined;
 
 type Page = 'home' | 'about' | 'contact' | 'download';
 
@@ -10,6 +11,12 @@ export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
 
   const handleDownload = () => {
+    if (!APK_DOWNLOAD_URL) {
+      alert(
+        'Download link is not configured.\n\nSet VITE_LAKBAY_APK_URL in public-site/.env and rebuild the public site.'
+      );
+      return;
+    }
     window.location.href = APK_DOWNLOAD_URL;
   };
 
